@@ -16,12 +16,14 @@ import com.opensymphony.xwork2.ActionSupport;
 public class Books extends ActionSupport {
 
     BooksResponse booksResponse = new BooksResponse();
+    private String myQuery;
+    
 
     public String execute() throws Exception{
 
         try {
-            URL url = new URL ("https://openlibrary.org/works/OL45883W.json");
-            // URL url = new URL ("http://openlibrary.org/search.json?q=fox");
+            // URL url = new URL ("https://openlibrary.org/works/OL45883W.json");
+            URL url = new URL ("http://openlibrary.org/search.json?title="+ getMyQuery());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
@@ -67,6 +69,15 @@ public class Books extends ActionSupport {
     public void setBooksResponse(BooksResponse booksResponse) {
         this.booksResponse = booksResponse;
     }
+
+    public String getMyQuery() {
+        return myQuery;
+    }
+
+    public void setMyQuery(String myQuery) {
+        this.myQuery = myQuery;
+    }
+
 
     
 }

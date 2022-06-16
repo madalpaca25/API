@@ -37,7 +37,7 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="s" uri="/struts-tags" %>
         overflow: hidden;  
     }
 
-    .myNews{
+    .myBooks{
         text-align: center;
         border-radius: 5px;
         margin: auto;
@@ -58,15 +58,24 @@ pageEncoding="UTF-8" %> <%@ taglib prefix="s" uri="/struts-tags" %>
 <body>
     <div class="banner">
     <s:include value="Navbar.jsp"/>
-        <s:iterator  value="booksResponse.authors">  
+    <div class="content">
+        <s:form action="Books">
+            <hr>
+            <br>
+            <s:textfield key="myQuery" cssClass="myBooks" label="TITLE: (1 word only for now)"/>
+            <br>
+            <s:submit value="Search" cssClass="myButton"/>
+            <hr>
+        </s:form>
+    </div>
+        <s:iterator  value="booksResponse.docs">  
             <fieldset>
+
+                <h3><s:property value="title"/></h3>
                 <br>
-                <h3><s:property value="author.key"/></h3>  
+                <h3>ID: <s:property value="key"/></h3>
                 <br>
-                <!-- <h3><s:property value="key"/></h3>
-                <br>
-                <h3><s:property value="type"/></h3> 
-                <hr> -->
+                <hr>
             </fieldset>  
         </s:iterator>
     </div>

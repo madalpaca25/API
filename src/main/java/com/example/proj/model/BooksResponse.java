@@ -39,13 +39,13 @@ public class BooksResponse {
     
 
 
-    private ArrayList<Authors> authors;
-    public ArrayList<Authors> getAuthors() {
-        return authors;
-    }
-    public void setAuthors(ArrayList<Authors> authors) {
-        this.authors = authors;
-    }
+    // private ArrayList<Authors> authors;
+    // public ArrayList<Authors> getAuthors() {
+    //     return authors;
+    // }
+    // public void setAuthors(ArrayList<Authors> authors) {
+    //     this.authors = authors;
+    // }
 
 
     // private String title;
