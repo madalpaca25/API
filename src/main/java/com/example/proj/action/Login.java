@@ -14,12 +14,15 @@ public class Login extends ActionSupport {
     static Person person=new Person();
     private String userName;
     private String passWord;
+    private String protpassWord;
     private String activeUserName;
     private String activeFirstName;
     private String activeLastName;
     private String activeAccountType;
     private static final long serialVersionUID = 1L;                           
     static String error = "error";
+
+    Register reg = new Register();
 
     public String execute() throws Exception {
         String currentStatus = error;
@@ -33,8 +36,9 @@ public class Login extends ActionSupport {
             if (connection != null) {
                 String sql = " SELECT * FROM users WHERE userName=? AND passWord =?";
                 preparedStatement = connection.prepareStatement(sql);
-                preparedStatement.setString(1, userName);  
-                preparedStatement.setString(2, passWord); 
+                preparedStatement.setString(1, userName);
+                setProtpassWord(reg.MD5(passWord));
+                preparedStatement.setString(2, getProtpassWord()); 
                 ResultSet rs= preparedStatement.executeQuery();
                 while (rs.next()){ 
                     activeUserName = rs.getString(2);
@@ -116,6 +120,15 @@ public class Login extends ActionSupport {
     public void setActiveAccountType(String activeAccountType) {
         this.activeAccountType = activeAccountType;
     }
+
+    public String getProtpassWord() {
+        return protpassWord;
+    }
+
+    public void setProtpassWord(String protpassWord) {
+        this.protpassWord = protpassWord;
+    }
+
     
 
 }
